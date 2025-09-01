@@ -76,17 +76,26 @@ function saveToStorage() {
     localStorage.setItem("counter", counter);
 }
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [
-    {id:1, text: "Стать frontend разработчиком", done: false},
-    {id:2, text: "Начать изучение JS", done: true}
-];
+function loadFromStorage() {
+  const savedTasks = localStorage.getItem("tasks");
+  const savedCounter = localStorage.getItem("counter");
 
+  return {
+    tasks: savedTasks ? JSON.parse(savedTasks) : [
+      {id: 1, text: "Стать frontend разработчиком", done: false},
+      {id: 2, text: "Начать изучение JS", done: true}
+    ],
+    counter: savedCounter ? Number(savedCounter) : 2
+  };
+}
+
+
+const { tasks, counter } = loadFromStorage();
 
 let taskInput = document.querySelector("#task-input");
 let addButton = document.querySelector("#add-task");
 let ol = document.querySelector("#task-list");
 let clear = document.querySelector("#clear-all")
-let counter = Number(localStorage.getItem("counter")) || 2;
 let taskCount = document.querySelector("#task-count")
 
 renderTasks();
