@@ -38,9 +38,9 @@ function addTask() {
             text: text,
             done:false
         });
-        localStorage.setItem("tasks", JSON.stringify(tasks));
         counter++;
-        localStorage.setItem("counter", counter);
+        saveToStorage();
+        
     }
 
     renderTasks();
@@ -52,9 +52,9 @@ function deleteTask(event){
     {
         if(tasks[index].id == event.target.dataset.id){
             tasks.splice(index,1);
-            localStorage.setItem("tasks", JSON.stringify(tasks));
             counter--;
-            localStorage.setItem("counter", counter);
+            saveToStorage()
+            
         }
     }
     renderTasks();
@@ -69,6 +69,11 @@ function renderTasks(){
     }
     taskCount.textContent = `Создано задач ${counter}`;
     clearInput(taskInput);
+}
+
+function saveToStorage() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("counter", counter);
 }
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
