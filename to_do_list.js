@@ -67,6 +67,8 @@ function renderTasks(){
         let li = createTaskElement(task);
         ol.appendChild(li);
     }
+    console.log("Рендерим задачи:", tasks);
+    console.log("Счётчик:", counter);
     taskCount.textContent = `Создано задач ${counter}`;
     clearInput(taskInput);
 }
