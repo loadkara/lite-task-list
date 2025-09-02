@@ -125,3 +125,4 @@ clear.addEventListener("click",function(){
     localStorage.setItem("counter", counter);
     renderTasks();
 });
+
